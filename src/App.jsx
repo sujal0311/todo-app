@@ -8,7 +8,6 @@ function App() {
 
   const [todoItems, setTodoItems] = useState(initialtodoItems);
   const handleNewItem = (itemName, itemDate) => {
-    console.log(itemName, itemDate);
     const newTodoItems = [
       ...todoItems,
       { todoName: itemName, todoDate: itemDate },
