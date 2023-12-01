@@ -4,7 +4,13 @@ import TodoItems from "./components/TodoItems";
 import { useState } from "react";
 import WelcomeMessage from "./components/WelcomeMessage";
 function App() {
-  const initialtodoItems = [];
+  let initialtodoItems;
+  if(localStorage.getItem("todoItems")===null){
+     initialtodoItems = [];
+  }
+  else{
+    initialtodoItems = JSON.parse(localStorage.getItem("todoItems"));
+  }
 
   const [todoItems, setTodoItems] = useState(initialtodoItems);
   const handleNewItem = (itemName, itemDate) => {
@@ -13,10 +19,12 @@ function App() {
       { todoName: itemName, todoDate: itemDate },
     ];
     setTodoItems(newTodoItems);
+     localStorage.setItem("todoItems", JSON.stringify(newTodoItems));
   };
   const handleDeleteItem=(todoItemName)=>{
     const newTodoItems=todoItems.filter((item)=>item.todoName!==todoItemName)
     setTodoItems(newTodoItems)
+     localStorage.setItem("todoItems", JSON.stringify(newTodoItems));
   }
   return (
     <div className="todo-container p-5 ">
