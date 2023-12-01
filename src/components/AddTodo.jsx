@@ -10,9 +10,15 @@ function AddTodo({ onNewItem }) {
     setTodoDate(event.target.value);
   };
   const handleAddButtonClicked = () => {
+   if(!todoDate || !todoName){
+      alert("Please enter a valid todo")
+    }
+    else{
+      console.log(todoName, todoDate);
     onNewItem(todoName, todoDate);
     setTodoDate("");
     setTodoName("");
+    }
   };
   return (
     <div className="container text-center">
